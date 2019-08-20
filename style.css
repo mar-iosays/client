@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+html {
+  font-family: 'Press Start 2P', cursive;
+}
+
+body {
+  margin: 0;
+}
+
+#page-wrapper {
+  background-color: #CBCAD0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+#streak-counter {
+  position: absolute;
+  display: block;
+  float: right;
+  height: 10%;
+  top: 5px;
+  padding: 1rem;
+}
+
+#controller-wrapper {
+  width: 95%;
+  background-color: #2A2A2A;
+  color: #D63A38;
+  margin: 50px auto;
+}
+
+
+#about-wrapper {
+  margin-top: 50px;
+  border-top: 1px dotted #D63A38;
+
+}
