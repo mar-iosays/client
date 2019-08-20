@@ -32,6 +32,24 @@ body {
   margin: 50px auto;
 }
 
+#left-controller {
+  width: 30%;
+  height: 30%;
+  background-color: #CBCAD0;
+}
+
+#center-controller {
+  width: 30%;
+  height: 30%;
+  background-color: #CBCAD0;
+}
+
+#right-controller {
+  width: 30%;
+  height: 30%;
+  background-color: #CBCAD0;
+}
+
 
 #about-wrapper {
   margin-top: 50px;
