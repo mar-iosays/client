@@ -5,11 +5,7 @@ const controllerWrapper = document.getElementById('controller-wrapper');
 const aButton = document.getElementById('a-button');
 const sButton = document.getElementById('s-button');
 const resetButton = document.querySelector('.reset');
-<<<<<<< HEAD
 const startButton = document.querySelector('.start');
-=======
-const startButton = document.querySelector('start');
->>>>>>> 45fc658358951a20f7f266349587c91493653583
 const upButton = document.getElementById('up-button');
 const rightButton = document.getElementById('right-button');
 const downButton = document.getElementById('down-button');
