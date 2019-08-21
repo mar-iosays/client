@@ -35,6 +35,17 @@ function playSound(event) {
 //   }
 // });
 
+window.addEventListener(
+  'keydown',
+  function(e) {
+    // space and arrow keys
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault();
+    }
+  },
+  false
+);
+
 resetButton.addEventListener('click', () => {
   const resetSound = new Audio('./reset.wav');
   resetSound.currentTime = 0;
