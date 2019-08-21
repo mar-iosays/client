@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import './reset.css';
 
 html {
   font-family: 'Press Start 2P', cursive;
@@ -27,32 +28,63 @@ body {
 
 #controller-wrapper {
   width: 95%;
-  background-color: #2A2A2A;
+  height: 200px;
+  background-color: #CBCAD0;
   color: #D63A38;
-  margin: 50px auto;
+  margin: 50px auto 20px auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
 }
 
 #left-controller {
-  width: 30%;
-  height: 30%;
-  background-color: #CBCAD0;
+  height: 100%;
+  background-color: #2A2A2A;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  justify-items: center;
 }
 
 #center-controller {
-  width: 30%;
-  height: 30%;
-  background-color: #CBCAD0;
+  background-color: #2A2A2A;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
 }
 
 #right-controller {
-  width: 30%;
-  height: 30%;
-  background-color: #CBCAD0;
+  background-color: #2A2A2A;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
+#up-button {
+  grid-column: 2/3;
+  align-self: end;
+  justify-self: center;
+}
+
+#right-button {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: start;
+}
+
+#down-button {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  justify-self: center;
+}
+
+#left-button {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: end;
+}
 
 #about-wrapper {
-  margin-top: 50px;
   border-top: 1px dotted #D63A38;
-
 }
