@@ -23,6 +23,12 @@ function playSound(event) {
   key.classList.add('');
 }
 
+resetButton.addEventListener('click', () => {
+  const resetSound = new Audio('./reset.wav');
+  resetSound.currentTime = 0;
+  resetSound.play();
+});
+
 function removeTransition(event) {
   if (event.propertyName !== 'transform') return;
   this.className.remove('');
