@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+<<<<<<< HEAD
 @import './reset.css';
+=======
+>>>>>>> master
 
 html {
   font-family: 'Press Start 2P', cursive;
@@ -10,7 +13,11 @@ body {
 }
 
 #page-wrapper {
+<<<<<<< HEAD
   background-color: rgb(78, 78, 78);
+=======
+  background-color: #CBCAD0;
+>>>>>>> master
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -19,11 +26,18 @@ body {
 
 #streak-counter {
   position: absolute;
+<<<<<<< HEAD
+=======
+  display: block;
+  float: right;
+  height: 10%;
+>>>>>>> master
   top: 5px;
   padding: 1rem;
 }
 
 #controller-wrapper {
+<<<<<<< HEAD
   width: 600px;
   height: 230px;
   background-color: #2A2A2A;
@@ -276,4 +290,18 @@ footer {
   width: 100%;
   background-color: #D63A38;
   bottom: 0;
+=======
+  width: 95%;
+  background-color: #2A2A2A;
+  color: #D63A38;
+  margin: 50px auto;
+}
+
+
+
+#about-wrapper {
+  margin-top: 50px;
+  border-top: 1px dotted #D63A38;
+
+>>>>>>> master
 }
