@@ -252,4 +252,14 @@ body {
 
 #about-wrapper {
   border-top: 1px dotted #D63A38;
+  margin-top: 80px;
+  padding: 30px;
+}
+
+footer {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  background-color: #D63A38;
+  bottom: 0;
 }
