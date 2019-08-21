@@ -70,6 +70,11 @@ body {
   border-radius: 2rem;
 }
 
+.a:hover,
+.s:hover {
+  background-color: #ec8b80;
+}
+
 .a::before,
 .s::before {
   position: relative;
@@ -144,6 +149,11 @@ body {
   border-radius: 10px;
   /* display: inline-block; */
   margin: 24px auto;
+}
+
+.reset:hover,
+.start:hover {
+  background-color: rgb(71, 71, 71);
 }
 
 .reset::after,
@@ -245,6 +255,13 @@ body {
   grid-row: 2 / 3;
   align-self: center;
   justify-self: center;
+}
+
+#up-button:hover,
+#right-button:hover,
+#down-button:hover,
+#left-button:hover {
+  background-color: rgb(68, 68, 68);
 }
 
 #about-wrapper {
