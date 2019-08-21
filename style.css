@@ -11,16 +11,13 @@ body {
 }
 
 #page-wrapper {
-  background-color: #CBCAD0;
+  background-color: rgb(117, 117, 117);
   width: 100vw;
-  height: 100vh;
-  position: absolute;
+  height: 100%;
   top: 0;
 }
 
 #streak-counter {
-  position: absolute;
-  top: 5px;
   padding: 1rem;
 }
 
@@ -266,15 +263,38 @@ body {
 }
 
 #about-wrapper {
+  width: 55%;
   border-top: 1px dotted #D63A38;
-  margin-top: 80px;
+  margin: 80px auto 0px auto;
   padding: 30px;
 }
 
+#about-wrapper h1 {
+  font-size: 1.5rem;
+  padding: 10px;
+  margin: 20px;
+  text-align: center;
+}
+
+#about-wrapper h2 {
+  font-size: 1rem;
+  padding: 10px;
+  margin: 20px;
+}
+
+#about-wrapper p {
+  line-height: 3rem;
+}
+
 footer {
-  position: absolute;
   height: 70px;
   width: 100%;
   background-color: #D63A38;
   bottom: 0;
+  text-align: center;
+}
+
+#footer-wrapper {
+  width: 55%;
+  margin: 0 auto;
 }
