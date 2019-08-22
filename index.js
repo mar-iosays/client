@@ -25,7 +25,7 @@ let iterator = 0;
 
 window.addEventListener('keydown', event => {
   playerKeyList.push(event.keyCode);
-  console.log(playerKeyList);
+  // console.log(playerKeyList);
 });
 
 function myLoop() {
@@ -35,33 +35,55 @@ function myLoop() {
   const changeArrowImg = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"] img`
   );
+
+  const changeClass = document.querySelector(
+    `div[data-key="${computerKeyList[iterator]}"]`
+  );
+
+  const a = 65;
+  const s = 83;
   const left = 37;
+  const up = 38;
   const right = 39;
   const down = 40;
-  const up = 38;
+
+  if (computerKeyList[iterator] === a) {
+    changeClass.classList.add('a-active');
+    setTimeout(() => {
+      changeClass.classList.remove('a-active');
+    }, 300);
+  }
+
+  if (computerKeyList[iterator] === s) {
+    changeClass.classList.add('s-active');
+    setTimeout(() => {
+      changeClass.classList.remove('s-active');
+    }, 300);
+  }
+
   if (computerKeyList[iterator] === left) {
     changeArrowImg.src = 'images/leftArrowAfter.png';
     setTimeout(() => {
       changeArrowImg.src = 'images/leftArrowBefore.png';
-    }, 100);
+    }, 300);
   }
   if (computerKeyList[iterator] === up) {
     changeArrowImg.src = 'images/upArrowAfter.png';
     setTimeout(() => {
       changeArrowImg.src = 'images/upArrowBefore.png';
-    }, 100);
+    }, 300);
   }
   if (computerKeyList[iterator] === right) {
     changeArrowImg.src = 'images/rightArrowAfter.png';
     setTimeout(() => {
       changeArrowImg.src = 'images/rightArrowBefore.png';
-    }, 100);
+    }, 300);
   }
   if (computerKeyList[iterator] === down) {
     changeArrowImg.src = 'images/downArrowAfter.png';
     setTimeout(() => {
       changeArrowImg.src = 'images/downArrowBefore.png';
-    }, 100);
+    }, 300);
   }
   // ? End fix code
   //  create a loop function
@@ -71,13 +93,13 @@ function myLoop() {
     );
     audio.currentTime = 0;
     audio.play();
-    console.log(audio);
+    // console.log(audio);
     iterator++; //  increment the counter
     if (iterator < 5) {
       //  if the counter < 10, call the loop function
       myLoop(); //  ..  again which will trigger another
     } //  ..  setTimeout()
-  }, 500);
+  }, 2000);
 }
 
 myLoop();
