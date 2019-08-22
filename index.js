@@ -28,7 +28,7 @@ function playSound(event) {
   console.log(key.id);
   setInterval(function() {
     key.classList.remove(`${key.id}-active`);
-  }, 600);
+  }, 800);
 }
 
 // rightButton.addEventListener('keydown', event => {
@@ -58,6 +58,12 @@ resetButton.addEventListener('click', () => {
   const resetSound = new Audio('./reset.wav');
   resetSound.currentTime = 0;
   resetSound.play();
+});
+
+startButton.addEventListener('click', () => {
+  const startSound = new Audio('./start.wav');
+  startSound.currentTime = 0;
+  startSound.play();
 });
 
 function removeTransition(event) {
