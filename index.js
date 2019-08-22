@@ -43,9 +43,55 @@ function playSound(event) {
 //   }
 // });
 
+window.addEventListener('keydown', event => {
+  const changeArrowImg = document.querySelector(
+    `div[data-key="${event.keyCode}"] img`
+  );
+  const left = 37;
+  const right = 39;
+  const down = 40;
+  const up = 38;
+  console.log(event.keyCode);
+  if (event.keyCode === left) {
+    changeArrowImg.src = 'images/leftArrowAfter.png';
+  }
+  if (event.keyCode === up) {
+    changeArrowImg.src = 'images/upArrowAfter.png';
+  }
+  if (event.keyCode === right) {
+    changeArrowImg.src = 'images/rightArrowAfter.png';
+  }
+  if (event.keyCode === down) {
+    changeArrowImg.src = 'images/downArrowAfter.png';
+  }
+});
+
+window.addEventListener('keyup', event => {
+  const changeArrowImg = document.querySelector(
+    `div[data-key="${event.keyCode}"] img`
+  );
+  const left = 37;
+  const right = 39;
+  const down = 40;
+  const up = 38;
+  console.log(event.keyCode);
+  if (event.keyCode === left) {
+    changeArrowImg.src = 'images/leftArrowBefore.png';
+  }
+  if (event.keyCode === up) {
+    changeArrowImg.src = 'images/upArrowBefore.png';
+  }
+  if (event.keyCode === right) {
+    changeArrowImg.src = 'images/rightArrowBefore.png';
+  }
+  if (event.keyCode === down) {
+    changeArrowImg.src = 'images/downArrowBefore.png';
+  }
+});
+
 window.addEventListener(
   'keydown',
-  function(e) {
+  e => {
     // space and arrow keys
     if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
       e.preventDefault();
@@ -55,14 +101,16 @@ window.addEventListener(
 );
 
 resetButton.addEventListener('click', () => {
-  const resetSound = new Audio('./reset.wav');
+  const resetSound = new Audio('audio/reset.wav');
   resetSound.currentTime = 0;
   resetSound.play();
 });
 
 startButton.addEventListener('click', () => {
   const startSound = new Audio('./start.wav');
+  console.log(startSound);
   startSound.currentTime = 0;
+  startSound.pause();
   startSound.play();
 });
 

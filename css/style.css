@@ -345,3 +345,13 @@ footer {
   width: 55%;
   margin: 0 auto;
 }
+
+#right-controller .key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#right-controller .key img {
+  max-width: 80%;
+}
