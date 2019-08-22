@@ -14,13 +14,21 @@ const leftButton = document.getElementById('left-button');
 // Keeping count of the streak
 const streakCounter = document.getElementById('streak-counter');
 
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
+window.addEventListener('keydown', playSound);
+
 function playSound(event) {
   const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
   const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
   if (!audio) return;
   audio.currentTime = 0;
   audio.play();
-  key.classList.add('');
+  key.classList.add(`${key.id}-active`);
+  console.log(key.id);
+  setInterval(function() {
+    key.classList.remove(`${key.id}-active`);
+  }, 600);
 }
 
 // rightButton.addEventListener('keydown', event => {
@@ -56,7 +64,3 @@ function removeTransition(event) {
   if (event.propertyName !== 'transform') return;
   this.className.remove('');
 }
-
-const keys = document.querySelectorAll('.key');
-keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
-window.addEventListener('keydown', playSound);
