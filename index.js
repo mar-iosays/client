@@ -20,26 +20,67 @@ window.addEventListener('keydown', playSound);
 const playerKeyList = [];
 const computerKeyList = [];
 const keyList = [37, 38, 39, 40, 65, 83];
-let iterator = 0;
 const accumulator = 5;
+let iterator = 0;
 
 window.addEventListener('keydown', event => {
   playerKeyList.push(event.keyCode);
   console.log(playerKeyList);
 });
 
-for (iterator; iterator < accumulator; iterator++) {
+function myLoop() {
   const randIndex = Math.floor(Math.random() * 6);
   computerKeyList.push(keyList[randIndex]);
-  const audio = document.querySelector(
-    `audio[data-key="${computerKeyList[iterator]}"]`
+  // ? Start fix code
+  const changeArrowImg = document.querySelector(
+    `div[data-key="${computerKeyList[iterator]}"] img`
   );
-  setTimeout(function() {
+  const left = 37;
+  const right = 39;
+  const down = 40;
+  const up = 38;
+  if (computerKeyList[iterator] === left) {
+    changeArrowImg.src = 'images/leftArrowAfter.png';
+    setTimeout(() => {
+      changeArrowImg.src = 'images/leftArrowBefore.png';
+    }, 100);
+  }
+  if (computerKeyList[iterator] === up) {
+    changeArrowImg.src = 'images/upArrowAfter.png';
+    setTimeout(() => {
+      changeArrowImg.src = 'images/upArrowBefore.png';
+    }, 100);
+  }
+  if (computerKeyList[iterator] === right) {
+    changeArrowImg.src = 'images/rightArrowAfter.png';
+    setTimeout(() => {
+      changeArrowImg.src = 'images/rightArrowBefore.png';
+    }, 100);
+  }
+  if (computerKeyList[iterator] === down) {
+    changeArrowImg.src = 'images/downArrowAfter.png';
+    setTimeout(() => {
+      changeArrowImg.src = 'images/downArrowBefore.png';
+    }, 100);
+  }
+  // ? End fix code
+  //  create a loop function
+  setTimeout(async () => {
+    const audio = document.querySelector(
+      `audio[data-key="${computerKeyList[iterator]}"]`
+    );
+    audio.currentTime = 0;
     audio.play();
-  }, 4000);
-
-  console.log(computerKeyList);
+    console.log(audio);
+    iterator++; //  increment the counter
+    if (iterator < 5) {
+      //  if the counter < 10, call the loop function
+      myLoop(); //  ..  again which will trigger another
+    } //  ..  setTimeout()
+  }, 500);
 }
+
+myLoop();
 // !end test
 
 function playSound(event) {
@@ -76,7 +117,6 @@ window.addEventListener('keydown', event => {
   const down = 40;
   const up = 38;
   if (!changeArrowImg) return;
-  console.log(changeArrowImg);
   if (event.keyCode === left) {
     changeArrowImg.src = 'images/leftArrowAfter.png';
   }
