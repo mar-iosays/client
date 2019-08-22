@@ -20,7 +20,7 @@ window.addEventListener('keydown', playSound);
 const playerKeyList = [];
 const computerKeyList = [];
 const keyList = [37, 38, 39, 40, 65, 83];
-const accumulator = 5;
+// const accumulator = 30;
 let iterator = 0;
 
 window.addEventListener('keydown', event => {
