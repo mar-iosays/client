@@ -10,13 +10,37 @@ const upButton = document.getElementById('up-button');
 const rightButton = document.getElementById('right-button');
 const downButton = document.getElementById('down-button');
 const leftButton = document.getElementById('left-button');
-
-// Keeping count of the streak
 const streakCounter = document.getElementById('streak-counter');
 
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
 window.addEventListener('keydown', playSound);
+
+// !start test
+const playerKeyList = [];
+const computerKeyList = [];
+const keyList = [37, 38, 39, 40, 65, 83];
+let iterator = 0;
+const accumulator = 5;
+
+window.addEventListener('keydown', event => {
+  playerKeyList.push(event.keyCode);
+  console.log(playerKeyList);
+});
+
+for (iterator; iterator < accumulator; iterator++) {
+  const randIndex = Math.floor(Math.random() * 6);
+  computerKeyList.push(keyList[randIndex]);
+  const audio = document.querySelector(
+    `audio[data-key="${computerKeyList[iterator]}"]`
+  );
+  setTimeout(function() {
+    audio.play();
+  }, 4000);
+
+  console.log(computerKeyList);
+}
+// !end test
 
 function playSound(event) {
   const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
@@ -51,7 +75,8 @@ window.addEventListener('keydown', event => {
   const right = 39;
   const down = 40;
   const up = 38;
-  console.log(event.keyCode);
+  if (!changeArrowImg) return;
+  console.log(changeArrowImg);
   if (event.keyCode === left) {
     changeArrowImg.src = 'images/leftArrowAfter.png';
   }
@@ -74,7 +99,8 @@ window.addEventListener('keyup', event => {
   const right = 39;
   const down = 40;
   const up = 38;
-  console.log(event.keyCode);
+  if (!changeArrowImg) return;
+  console.log(changeArrowImg);
   if (event.keyCode === left) {
     changeArrowImg.src = 'images/leftArrowBefore.png';
   }
@@ -110,7 +136,6 @@ startButton.addEventListener('click', () => {
   const startSound = new Audio('./start.wav');
   console.log(startSound);
   startSound.currentTime = 0;
-  startSound.pause();
   startSound.play();
 });
 
