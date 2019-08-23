@@ -35,77 +35,54 @@ function myLoop() {
   const changeArrowImg = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"] img`
   );
-
   const changeClass = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"]`
   );
 
-  const a = 65;
-  const s = 83;
-  const left = 37;
-  const up = 38;
-  const right = 39;
-  const down = 40;
-
-  if (computerKeyList[iterator] === a) {
-    changeClass.classList.add('a-active');
+  if (randIndex < 4) {
+    changeArrowImg.src = `images/${changeArrowImg.name}ArrowAfter.png`;
     setTimeout(() => {
-      changeClass.classList.remove('a-active');
+      changeArrowImg.src = `images/${changeArrowImg.name}ArrowBefore.png`;
+    }, 100);
+  }
+  if (randIndex >= 4) {
+    const startSound = new Audio(`audio/${changeClass.name}.wav`);
+    changeClass.classList.add(`${changeClass.id}-active`);
+    startSound.currentTime = 0;
+    startSound.play();
+    setTimeout(() => {
+      changeClass.classList.remove(`${changeClass.id}-active`);
     }, 300);
   }
-
-  if (computerKeyList[iterator] === s) {
-    changeClass.classList.add('s-active');
-    setTimeout(() => {
-      changeClass.classList.remove('s-active');
-    }, 300);
-  }
-
-  if (computerKeyList[iterator] === left) {
-    changeClass.classList.add('left-button-active');
-    changeArrowImg.src = 'images/leftArrowAfter.png';
-    setTimeout(() => {
-      changeClass.classList.remove('left-button-active');
-      changeArrowImg.src = 'images/leftArrowBefore.png';
-    }, 300);
-  }
-  if (computerKeyList[iterator] === up) {
-    changeArrowImg.src = 'images/upArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/upArrowBefore.png';
-    }, 300);
-  }
-  if (computerKeyList[iterator] === right) {
-    changeArrowImg.src = 'images/rightArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/rightArrowBefore.png';
-    }, 300);
-  }
-  if (computerKeyList[iterator] === down) {
-    changeArrowImg.src = 'images/downArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/downArrowBefore.png';
-    }, 300);
-  }
-  // ? End fix code
   //  create a loop function
   setTimeout(async () => {
     const audio = document.querySelector(
       `audio[data-key="${computerKeyList[iterator]}"]`
     );
+    const play = audio.play();
     audio.currentTime = 0;
-    audio.play();
-    // console.log(audio);
+    // If the audio.play comes back undefined, throw an error
+    if (play !== undefined) {
+      play
+        .then(_ => {
+          // Automatic playback started!
+          // Show playing UI.
+          audio.play();
+        })
+        .catch(error => {
+          // Auto-play was prevented
+          // Show paused UI.
+          console.log('auto play prevented');
+        });
+    }
     iterator++; //  increment the counter
-    if (iterator < 5) {
-      //  if the counter < 10, call the loop function
-      myLoop(); //  ..  again which will trigger another
-    } //  ..  setTimeout()
+    if (iterator < 6) {
+      myLoop();
+    }
   }, 2000);
 }
 
 myLoop();
-// !end test
 
 function playSound(event) {
   const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
@@ -114,82 +91,39 @@ function playSound(event) {
   audio.currentTime = 0;
   audio.play();
   key.classList.add(`${key.id}-active`);
-  console.log(key.id);
   setInterval(function() {
     key.classList.remove(`${key.id}-active`);
   }, 800);
 }
 
-// rightButton.addEventListener('keydown', event => {
-// const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
-// const resetSound = new Audio('./sfx_wpn_cannon2.wav');
-// const failSound = new Audio('./reset.wav');
-// console.log(key.dataset.key);
-//   if (rightButton.key === 37) {
-//     resetSound.play();
-//   } else {
-//     failSound.play();
-//   }
-// });
-
 window.addEventListener('keydown', event => {
   const changeArrowImg = document.querySelector(
     `div[data-key="${event.keyCode}"] img`
   );
-  const left = 37;
-  const right = 39;
-  const down = 40;
-  const up = 38;
   if (!changeArrowImg) return;
-  if (event.keyCode === left) {
-    changeArrowImg.src = 'images/leftArrowAfter.png';
-  }
-  if (event.keyCode === up) {
-    changeArrowImg.src = 'images/upArrowAfter.png';
-  }
-  if (event.keyCode === right) {
-    changeArrowImg.src = 'images/rightArrowAfter.png';
-  }
-  if (event.keyCode === down) {
-    changeArrowImg.src = 'images/downArrowAfter.png';
-  }
+  changeArrowImg.src = `images/${changeArrowImg.name}ArrowAfter.png`;
 });
 
 window.addEventListener('keyup', event => {
   const changeArrowImg = document.querySelector(
     `div[data-key="${event.keyCode}"] img`
   );
-  const left = 37;
-  const right = 39;
-  const down = 40;
-  const up = 38;
   if (!changeArrowImg) return;
-  console.log(changeArrowImg);
-  if (event.keyCode === left) {
-    changeArrowImg.src = 'images/leftArrowBefore.png';
-  }
-  if (event.keyCode === up) {
-    changeArrowImg.src = 'images/upArrowBefore.png';
-  }
-  if (event.keyCode === right) {
-    changeArrowImg.src = 'images/rightArrowBefore.png';
-  }
-  if (event.keyCode === down) {
-    changeArrowImg.src = 'images/downArrowBefore.png';
-  }
+  changeArrowImg.src = `images/${changeArrowImg.name}ArrowBefore.png`;
 });
 
 window.addEventListener(
   'keydown',
-  e => {
+  event => {
     // space and arrow keys
     if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-      e.preventDefault();
+      event.preventDefault();
     }
   },
   false
 );
 
+// ! START: These two functions do the exact same thing
 resetButton.addEventListener('click', () => {
   const resetSound = new Audio('audio/reset.wav');
   resetSound.currentTime = 0;
@@ -198,11 +132,13 @@ resetButton.addEventListener('click', () => {
 
 startButton.addEventListener('click', () => {
   const startSound = new Audio('./start.wav');
-  console.log(startSound);
   startSound.currentTime = 0;
   startSound.play();
 });
+// ! END
 
+// ? We will have to transition what we have at top for changing
+// ? class to the function
 function removeTransition(event) {
   if (event.propertyName !== 'transform') return;
   this.className.remove('');
