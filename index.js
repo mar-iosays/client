@@ -29,54 +29,52 @@ window.addEventListener('keydown', event => {
 });
 
 function myLoop() {
-  const randIndex = Math.floor(Math.random() * 6);
+  const randIndex = Math.floor(Math.random() * 4);
+  console.log(randIndex);
   computerKeyList.push(keyList[randIndex]);
   // ? Start fix code
   const changeArrowImg = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"] img`
   );
-  const left = 37;
-  const right = 39;
-  const down = 40;
-  const up = 38;
-  if (computerKeyList[iterator] === left) {
-    changeArrowImg.src = 'images/leftArrowAfter.png';
+  const playMusic = document.querySelector(
+    `div[data-key="${computerKeyList[iterator]}"]`
+  );
+  if (randIndex < 5) {
+    changeArrowImg.src = `images/${changeArrowImg.name}ArrowAfter.png`;
     setTimeout(() => {
-      changeArrowImg.src = 'images/leftArrowBefore.png';
+      changeArrowImg.src = `images/${changeArrowImg.name}ArrowBefore.png`;
     }, 100);
   }
-  if (computerKeyList[iterator] === up) {
-    changeArrowImg.src = 'images/upArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/upArrowBefore.png';
-    }, 100);
+  if (randIndex >= 5) {
+    const startSound = new Audio(`audio/${playMusic.name}.wav`);
+    startSound.currentTime = 0;
+    startSound.play();
   }
-  if (computerKeyList[iterator] === right) {
-    changeArrowImg.src = 'images/rightArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/rightArrowBefore.png';
-    }, 100);
-  }
-  if (computerKeyList[iterator] === down) {
-    changeArrowImg.src = 'images/downArrowAfter.png';
-    setTimeout(() => {
-      changeArrowImg.src = 'images/downArrowBefore.png';
-    }, 100);
-  }
-  // ? End fix code
   //  create a loop function
   setTimeout(async () => {
     const audio = document.querySelector(
       `audio[data-key="${computerKeyList[iterator]}"]`
     );
+    const play = audio.play();
     audio.currentTime = 0;
-    audio.play();
-    console.log(audio);
+    // If the audio.play comes back undefined, throw an error
+    if (play !== undefined) {
+      play
+        .then(_ => {
+          // Automatic playback started!
+          // Show playing UI.
+          audio.play();
+        })
+        .catch(error => {
+          // Auto-play was prevented
+          // Show paused UI.
+          console.log('auto play prevented');
+        });
+    }
     iterator++; //  increment the counter
-    if (iterator < 5) {
-      //  if the counter < 10, call the loop function
-      myLoop(); //  ..  again which will trigger another
-    } //  ..  setTimeout()
+    if (iterator < 6) {
+      myLoop();
+    }
   }, 500);
 }
 
@@ -90,7 +88,6 @@ function playSound(event) {
   audio.currentTime = 0;
   audio.play();
   key.classList.add(`${key.id}-active`);
-  console.log(key.id);
   setInterval(function() {
     key.classList.remove(`${key.id}-active`);
   }, 800);
@@ -174,7 +171,6 @@ resetButton.addEventListener('click', () => {
 
 startButton.addEventListener('click', () => {
   const startSound = new Audio('./start.wav');
-  console.log(startSound);
   startSound.currentTime = 0;
   startSound.play();
 });

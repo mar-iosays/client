@@ -1,4 +1,4 @@
-function myLoop() {
+exports.myLoop = () => {
   const randIndex = Math.floor(Math.random() * 6);
   computerKeyList.push(keyList[randIndex]);
   // ? Start fix code
@@ -48,4 +48,4 @@ function myLoop() {
       myLoop(); //  ..  again which will trigger another
     } //  ..  setTimeout()
   }, 500);
-}
+};
