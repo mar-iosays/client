@@ -62,8 +62,10 @@ function myLoop() {
   }
 
   if (computerKeyList[iterator] === left) {
+    changeClass.classList.add('left-button-active');
     changeArrowImg.src = 'images/leftArrowAfter.png';
     setTimeout(() => {
+      changeClass.classList.remove('left-button-active');
       changeArrowImg.src = 'images/leftArrowBefore.png';
     }, 300);
   }
