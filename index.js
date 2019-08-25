@@ -16,7 +16,6 @@ const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
 window.addEventListener('keydown', playSound);
 
-// !start test
 const playerKeyList = [];
 const computerKeyList = [];
 const keyList = [37, 38, 39, 40, 65, 83];
@@ -116,7 +115,7 @@ window.addEventListener(
   'keydown',
   event => {
     // space and arrow keys
-    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
       event.preventDefault();
     }
   },
