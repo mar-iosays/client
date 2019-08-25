@@ -18,6 +18,7 @@ window.addEventListener('keydown', playSound);
 
 const playerKeyList = [];
 const computerKeyList = [];
+// Get the Keyboard ascii code
 const keyList = [37, 38, 39, 40, 65, 83];
 // const accumulator = 30;
 let iterator = 0;
@@ -27,25 +28,33 @@ window.addEventListener('keydown', event => {
   // console.log(playerKeyList);
 });
 
+// for (iterator; iterator < 10; iterator++) {
+//   const randiterator = Math.floor(Math.random() * 6);
+//   console.log(keyList[randiterator]);
+// }
+
 function myLoop() {
   const randIndex = Math.floor(Math.random() * 6);
   computerKeyList.push(keyList[randIndex]);
-  // ? Start fix code
   const changeArrowImg = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"] img`
   );
   const changeClass = document.querySelector(
     `div[data-key="${computerKeyList[iterator]}"]`
   );
-
+  const audio = document.querySelector(
+    `audio[data-key="${computerKeyList[iterator]}"]`
+  );
   if (randIndex < 4) {
     changeArrowImg.src = `images/${changeArrowImg.name}ArrowAfter.png`;
+    audio.currentTime = 0;
+    audio.play();
     setTimeout(() => {
       changeArrowImg.src = `images/${changeArrowImg.name}ArrowBefore.png`;
     }, 100);
   }
   if (randIndex >= 4) {
-    const startSound = new Audio(`audio/${changeClass.name}.wav`);
+    const startSound = new Audio(`audio/${changeClass.id}.wav`);
     changeClass.classList.add(`${changeClass.id}-active`);
     startSound.currentTime = 0;
     startSound.play();
@@ -54,34 +63,15 @@ function myLoop() {
     }, 300);
   }
   //  create a loop function
-  setTimeout(async () => {
-    const audio = document.querySelector(
-      `audio[data-key="${computerKeyList[iterator]}"]`
-    );
-    const play = audio.play();
-    audio.currentTime = 0;
-    // If the audio.play comes back undefined, throw an error
-    if (play !== undefined) {
-      play
-        .then(_ => {
-          // Automatic playback started!
-          // Show playing UI.
-          audio.play();
-        })
-        .catch(error => {
-          // Auto-play was prevented
-          // Show paused UI.
-          console.log('auto play prevented');
-        });
-    }
+  setTimeout(() => {
     iterator++; //  increment the counter
     if (iterator < 6) {
       myLoop();
     }
-  }, 2000);
+  }, 1000);
 }
 
-myLoop();
+// myLoop();
 
 function playSound(event) {
   const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
@@ -133,6 +123,9 @@ startButton.addEventListener('click', () => {
   const startSound = new Audio('./start.wav');
   startSound.currentTime = 0;
   startSound.play();
+  setTimeout(() => {
+    myLoop();
+  }, 12000);
 });
 // ! END
 
