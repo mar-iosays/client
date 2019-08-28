@@ -17,15 +17,13 @@ keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
 window.addEventListener('keydown', playSound);
 
 const playerKeyList = [];
-const computerKeyList = [];
+let computerKeyList = [];
 // Get the Keyboard ascii code
 const keyList = [37, 38, 39, 40, 65, 83];
-// const accumulator = 30;
 let iterator = 0;
 
 window.addEventListener('keydown', event => {
   playerKeyList.push(event.keyCode);
-  // console.log(playerKeyList);
 });
 
 // for (iterator; iterator < 10; iterator++) {
@@ -33,27 +31,33 @@ window.addEventListener('keydown', event => {
 //   console.log(keyList[randiterator]);
 // }
 
-function myLoop() {
+async function myLoop() {
+  if (iterator >= 6) {
+    // clear iterator and array
+    iterator = 0;
+    computerKeyList = [];
+  }
+  // get an index from 0 to 5
   const randIndex = Math.floor(Math.random() * 6);
   computerKeyList.push(keyList[randIndex]);
-  const changeArrowImg = document.querySelector(
-    `div[data-key="${computerKeyList[iterator]}"] img`
-  );
-  const changeClass = document.querySelector(
-    `div[data-key="${computerKeyList[iterator]}"]`
-  );
   const audio = document.querySelector(
     `audio[data-key="${computerKeyList[iterator]}"]`
   );
+
   if (randIndex < 4) {
+    const changeArrowImg = document.querySelector(
+      `div[data-key="${computerKeyList[iterator]}"] img`
+    );
     changeArrowImg.src = `images/${changeArrowImg.name}ArrowAfter.png`;
     audio.currentTime = 0;
-    audio.play();
+    await audio.play();
     setTimeout(() => {
       changeArrowImg.src = `images/${changeArrowImg.name}ArrowBefore.png`;
     }, 100);
-  }
-  if (randIndex >= 4) {
+  } else {
+    const changeClass = document.querySelector(
+      `div[data-key="${computerKeyList[iterator]}"]`
+    );
     const startSound = new Audio(`audio/${changeClass.id}.wav`);
     changeClass.classList.add(`${changeClass.id}-active`);
     startSound.currentTime = 0;
@@ -120,12 +124,12 @@ resetButton.addEventListener('click', () => {
 });
 
 startButton.addEventListener('click', () => {
-  const startSound = new Audio('./start.wav');
+  const startSound = new Audio('audio/start.wav');
   startSound.currentTime = 0;
   startSound.play();
   setTimeout(() => {
     myLoop();
-  }, 12000);
+  }, 3500);
 });
 // ! END
 
